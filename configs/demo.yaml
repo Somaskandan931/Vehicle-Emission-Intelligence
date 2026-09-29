@@ -1,0 +1,32 @@
+# SMOKE-TEST CONFIG - synthetic data, placeholder VEEI/DEHS values.
+# Nothing produced with this file may be used in the paper.
+seed: 42
+data:
+  raw_file: data/raw/demo_emissions.csv
+  vehicle_col: vehicle_id
+  time_col: timestamp
+  target_cols: [CO, HC, NOx, CO2, SO2, PM]
+  feature_cols: null
+  categorical_cols: [vehicle_type]
+  include_targets_as_inputs: true
+  sequence_length: 12
+  prediction_horizon: 1
+  drop_negative_targets: true
+  outlier_method: none
+  iqr_factor: 3.0
+split: {train: 0.70, validation: 0.15, test: 0.15}
+training: {epochs: 6, batch_size: 128, learning_rate: 0.002, weight_decay: 0.0, patience: 3, grad_clip: 1.0}
+model: {hidden_units: 16, layers: 1, dropout: 0.0}
+hybrid:
+  lambda: null
+  lambda_grid: [0.0, 0.5, 1.0]
+veei:
+  limits:  {CO: 1.0, HC: 1.0, NOx: 1.0, CO2: 1.0, SO2: 1.0, PM: 1.0}     # PLACEHOLDER
+  weights: {CO: 0.2, HC: 0.2, NOx: 0.2, CO2: 0.2, SO2: 0.1, PM: 0.1}     # PLACEHOLDER
+  sources: {CO: "demo", HC: "demo", NOx: "demo", CO2: "demo", SO2: "demo", PM: "demo"}
+dehs: {beta: 0.5, justification: "demo placeholder"}
+paths:
+  processed: data/processed
+  experiments: experiments
+  tables: results/tables
+  figures: results/figures

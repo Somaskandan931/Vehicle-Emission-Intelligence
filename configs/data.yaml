@@ -1,0 +1,22 @@
+data:
+  raw_file: data/raw/emissions.csv     # put the real dataset here
+  vehicle_col: series_id               # one series per vehicle+trip (see src/data/merge_raw.py)
+  time_col: timestamp                  # datetime or numeric ordering column
+  target_cols: [CO, CO2, NOx]          # only pollutants measured in the Pretoria data (g/s)
+  feature_cols: [load, coldStart, gps_alt, gps_speed, humidity, pressure, temp, rpm, speed_vehicle,
+               throttle, manifold_pressure, manifold_temp, coolant_temp, fuel_flow, fuel_rate,
+               air_fuel_ratio]       # vehicle-side + ambient inputs only (no exhaust-side leakage)
+  categorical_cols: [vehicle]          # etios | figo | rrv
+  include_targets_as_inputs: true      # past pollutant values as input features
+  sequence_length: 12                  # starting default
+  prediction_horizon: 1                # steps ahead
+  drop_negative_targets: false         # merge_raw.py already clips analyser noise to 0
+  outlier_method: none                 # none | iqr
+  iqr_factor: 3.0
+
+split:                                 # mode: within_trip (default) | by_trip (see configs/by_trip.yaml)
+  mode: within_trip
+  stratify_col: vehicle
+  train: 0.70
+  validation: 0.15
+  test: 0.15

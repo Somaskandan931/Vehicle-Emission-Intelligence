@@ -1,0 +1,15 @@
+# Stricter evaluation: whole trips are held out, so the test set contains trips the model never saw.
+# Everything is written to separate folders, so the default (within-trip) results are untouched.
+#   python -m src.run_all --config configs/by_trip.yaml
+split:
+  mode: by_trip
+  stratify_col: vehicle        # every vehicle contributes trips to train / val / test
+paths:
+  processed: data/processed_bytrip
+  experiments: experiments_bytrip
+  checkpoints: models/checkpoints_bytrip
+  metrics: results_bytrip/metrics
+  predictions: results_bytrip/predictions
+  ablation: results_bytrip/ablation
+  tables: results_bytrip/tables
+  figures: results_bytrip/figures

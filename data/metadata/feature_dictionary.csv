@@ -1,0 +1,23 @@
+column,role,unit,description
+series_id,identifier,,vehicle+trip(+segment) id; splits are made within each series
+timestamp,time,s,1 Hz timestamp
+vehicle,categorical,,etios | figo | rrv (one-hot encoded)
+load,feature,kg,added payload (rrv only; 0 otherwise)
+coldStart,feature,0/1,cold-start trip flag
+gps_alt,feature,m,GPS altitude
+gps_speed,feature,km/h,GPS speed
+humidity,feature,%,ambient humidity
+pressure,feature,hPa,ambient pressure
+temp,feature,degC,ambient temperature
+rpm,feature,rpm,engine speed
+speed_vehicle,feature,km/h,vehicle speed (ECU)
+throttle,feature,%,throttle position
+manifold_pressure,feature,,intake manifold pressure
+manifold_temp,feature,degC,intake manifold temperature
+coolant_temp,feature,degC,coolant temperature
+fuel_flow,feature,,fuel flow
+fuel_rate,feature,,fuel rate
+air_fuel_ratio,feature,,air-fuel ratio
+CO,target,g/s,CO mass rate (CO_mass)
+CO2,target,g/s,CO2 mass rate (CO2_mass)
+NOx,target,g/s,NOx mass rate (NOx_mass)

@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------
+# Master config: global settings + VEEI / DEHS parameters.
+# Merged at load time with:
+#   configs/data.yaml                 data + split
+#   configs/<uni|bi|hybrid>_lstm.yaml model + training (+ lambda for hybrid)
+# Every value that appears in the paper must come from these files.
+# Values marked "starting default" are NOT tuned yet - record the
+# final ones you actually use in experiments/README.md.
+# ---------------------------------------------------------------
+seed: 42
+
+# Hardware. Training requires a GPU by default: it stops with a clear error instead of
+# silently falling back to a slow CPU run.
+#   device: gpu   -> CUDA (NVIDIA) or MPS (Apple silicon); error if neither is available
+#   device: cuda | mps | cpu | auto (auto = best available, CPU allowed)
+compute:
+  device: gpu
+  amp: false            # mixed precision (CUDA only); leave false for the paper runs unless needed
+  num_workers: 0        # DataLoader workers; keep 0 on Windows
+
+paths:
+  processed: data/processed
+  experiments: experiments
+  checkpoints: models/checkpoints
+  metrics: results/metrics
+  predictions: results/predictions
+  ablation: results/ablation
+  tables: results/tables
+  figures: results/figures
+
+# VEEI / DEHS parameters must be sourced and documented.
+# Leave null until you have a citable source; the code refuses to run with nulls.
+veei:
+  limits:  {CO: null, HC: null, NOx: null, CO2: null, SO2: null, PM: null}
+  weights: {CO: null, HC: null, NOx: null, CO2: null, SO2: null, PM: null}
+  units:   {CO: "", HC: "", NOx: "", CO2: "", SO2: "", PM: ""}
+  sources: {CO: "", HC: "", NOx: "", CO2: "", SO2: "", PM: ""}
+dehs:
+  beta: null
+  justification: ""

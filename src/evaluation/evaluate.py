@@ -22,7 +22,7 @@ def load_scalers_meta(cfg):
 
 
 @torch.no_grad()
-def predict(model, X, device, bs=512):
+def predict(model, X, device, bs=4096):
     model.eval()
     out = []
     for i in range(0, len(X), bs):

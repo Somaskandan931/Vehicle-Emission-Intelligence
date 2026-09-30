@@ -29,12 +29,19 @@ paths:
   figures: results/figures
 
 # VEEI / DEHS parameters must be sourced and documented.
-# Leave null until you have a citable source; the code refuses to run with nulls.
+# Limits are regulatory g/km values converted to g/s at a 50 km/h reference speed
+# (g/s = g/km * 50 / 3600). Verify against the regulation text before citing.
 veei:
-  limits:  {CO: null, HC: null, NOx: null, CO2: null, SO2: null, PM: null}
-  weights: {CO: null, HC: null, NOx: null, CO2: null, SO2: null, PM: null}
-  units:   {CO: "", HC: "", NOx: "", CO2: "", SO2: "", PM: ""}
-  sources: {CO: "", HC: "", NOx: "", CO2: "", SO2: "", PM: ""}
+  limits:  {CO: 0.013889, HC: null, NOx: 0.000833, CO2: 1.319, SO2: null, PM: null}
+  weights: {CO: 0.3333, HC: null, NOx: 0.3333, CO2: 0.3333, SO2: null, PM: null}
+  units:   {CO: "g/s", HC: "", NOx: "g/s", CO2: "g/s", SO2: "", PM: ""}
+  sources:
+    CO:  "Euro 6 / BS-VI petrol passenger car limit 1.0 g/km, converted to g/s at 50 km/h reference speed"
+    HC:  ""
+    NOx: "Euro 6 / BS-VI petrol passenger car limit 0.06 g/km, converted to g/s at 50 km/h reference speed"
+    CO2: "EU fleet-average target 95 g/km, converted to g/s at 50 km/h reference speed"
+    SO2: ""
+    PM:  ""
 dehs:
-  beta: null
-  justification: ""
+  beta: 0.6931
+  justification: "beta = ln 2 so a vehicle emitting exactly at the reference limits scores DEHS = 50; equal pollutant weights, sensitivity reported."

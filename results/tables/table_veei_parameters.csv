@@ -1,0 +1,4 @@
+pollutant,limit,weight,unit,source,beta,beta_justification
+CO,0.013889,0.3333,g/s,"Euro 6 / BS-VI petrol passenger car limit 1.0 g/km, converted to g/s at 50 km/h reference speed",0.6931,"beta = ln 2 so a vehicle emitting exactly at the reference limits scores DEHS = 50; equal pollutant weights, sensitivity reported."
+CO2,1.319,0.3333,g/s,"EU fleet-average target 95 g/km, converted to g/s at 50 km/h reference speed",0.6931,"beta = ln 2 so a vehicle emitting exactly at the reference limits scores DEHS = 50; equal pollutant weights, sensitivity reported."
+NOx,0.000833,0.3333,g/s,"Euro 6 / BS-VI petrol passenger car limit 0.06 g/km, converted to g/s at 50 km/h reference speed",0.6931,"beta = ln 2 so a vehicle emitting exactly at the reference limits scores DEHS = 50; equal pollutant weights, sensitivity reported."

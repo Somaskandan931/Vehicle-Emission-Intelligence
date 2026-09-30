@@ -1,0 +1,4 @@
+model,hidden_units,layers,dropout,epochs,batch_size,learning_rate,weight_decay,patience,grad_clip,lambda,sequence_length,prediction_horizon
+Uni-LSTM,64,1,0.0,100,64,0.001,0.0,12,1.0,,12,1
+Bi-LSTM,64,1,0.0,100,64,0.001,0.0,12,1.0,,12,1
+Hybrid,64,1,0.0,100,64,0.001,0.0,12,1.0,0.6,12,1

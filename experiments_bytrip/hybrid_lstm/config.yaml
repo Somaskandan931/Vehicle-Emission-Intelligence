@@ -1,0 +1,119 @@
+compute:
+  amp: false
+  device: gpu
+  num_workers: 0
+data:
+  categorical_cols:
+  - vehicle
+  drop_negative_targets: false
+  feature_cols:
+  - load
+  - coldStart
+  - gps_alt
+  - gps_speed
+  - humidity
+  - pressure
+  - temp
+  - rpm
+  - speed_vehicle
+  - throttle
+  - manifold_pressure
+  - manifold_temp
+  - coolant_temp
+  - fuel_flow
+  - fuel_rate
+  - air_fuel_ratio
+  include_targets_as_inputs: true
+  iqr_factor: 3.0
+  outlier_method: none
+  prediction_horizon: 1
+  raw_file: data/raw/emissions.csv
+  sequence_length: 12
+  target_cols:
+  - CO
+  - CO2
+  - NOx
+  time_col: timestamp
+  vehicle_col: series_id
+dehs:
+  beta: null
+  justification: ''
+hybrid:
+  lambda: 0.6
+  lambda_grid:
+  - 0.0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1.0
+model:
+  dropout: 0.0
+  hidden_units: 64
+  layers: 1
+paths:
+  ablation: results_bytrip/ablation
+  checkpoints: models/checkpoints_bytrip
+  experiments: experiments_bytrip
+  figures: results_bytrip/figures
+  metrics: results_bytrip/metrics
+  predictions: results_bytrip/predictions
+  processed: data/processed_bytrip
+  tables: results_bytrip/tables
+run:
+  amp: false
+  best_epoch: 48
+  best_val_loss_scaled_mse: 0.015066297597718489
+  device: NVIDIA GeForce GTX 1650
+  lambda: 0.6
+  model: hybrid
+  params: 76035
+  torch: 2.5.1+cu121
+seed: 42
+split:
+  mode: by_trip
+  stratify_col: vehicle
+  test: 0.15
+  train: 0.7
+  validation: 0.15
+training:
+  batch_size: 64
+  epochs: 100
+  grad_clip: 1.0
+  learning_rate: 0.001
+  patience: 12
+  weight_decay: 0.0
+veei:
+  limits:
+    CO: null
+    CO2: null
+    HC: null
+    NOx: null
+    PM: null
+    SO2: null
+  sources:
+    CO: ''
+    CO2: ''
+    HC: ''
+    NOx: ''
+    PM: ''
+    SO2: ''
+  units:
+    CO: ''
+    CO2: ''
+    HC: ''
+    NOx: ''
+    PM: ''
+    SO2: ''
+  weights:
+    CO: null
+    CO2: null
+    HC: null
+    NOx: null
+    PM: null
+    SO2: null

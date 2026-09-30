@@ -19,7 +19,13 @@ class HybridLSTM(nn.Module):
         self.head = nn.Linear(hidden, n_out)
 
     def forward(self, x):
-        hb, _ = self.bi(x)
-        hu, _ = self.uni(x)
-        h = self.lam * self.proj(hb[:, -1]) + (1.0 - self.lam) * hu[:, -1]
+        # A branch whose weight is exactly 0 contributes nothing, so it is not computed
+        # (lambda = 0 and lambda = 1 cost half as much; the output is unchanged).
+        h = 0.0
+        if self.lam > 0.0:
+            hb, _ = self.bi(x)
+            h = h + self.lam * self.proj(hb[:, -1])
+        if self.lam < 1.0:
+            hu, _ = self.uni(x)
+            h = h + (1.0 - self.lam) * hu[:, -1]
         return self.head(h)
